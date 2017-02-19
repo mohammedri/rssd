@@ -26,9 +26,9 @@ module RssD
 
     set :root, File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
 
-    get '/jvns.ca' do
-      if @@rss
-        @posts = @@rss.items.map do |item|
+    get '/jvns' do
+      if @@rss_feeds
+        @posts = @@rss_feeds[:jvns].items.map do |item|
           Post.parse_atom(item)
         end
         erb :index

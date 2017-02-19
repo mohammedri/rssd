@@ -24,6 +24,5 @@ module RssD
 		def self.get_summary(item)
 			return Nokogiri::HTML(item.content.content).text[0..140] + "..."
 		end
-
 	end
 end

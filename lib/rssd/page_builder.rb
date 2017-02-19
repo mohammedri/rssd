@@ -1,6 +1,5 @@
 class PageBuilder 
 	def initialize(posts)
-		rss = 
 		@posts = posts
 	end
 
