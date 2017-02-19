@@ -11,7 +11,6 @@ module RssD
     	posts = rss.items.map do |item|
   			Post.parse_atom(item)
 			end
-      @person = "mo"
       erb :index
     end
   end

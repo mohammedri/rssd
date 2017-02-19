@@ -13,7 +13,13 @@ module RssD
 			title = item.title.content
 			link = item.link.href
 			date = item.updated.content
+			summary = get_summary(item)
 			self.new(id, title, date, summary)
 		end
+
+		def get_summary(item)
+			return Nokogiri::HTML(items[0].content.content).text[0..140] + "..."
+		end
+
 	end
 end
