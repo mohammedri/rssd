@@ -7,6 +7,15 @@ module RssD
       @url = url
       @posts = {}
       @pushbullet = PushBullet.new
+      @initialized = false
+    end
+
+    def initialize!
+      @initialized = true
+    end
+
+    def initialized?
+      @initialized
     end
 
     def posts
@@ -22,7 +31,7 @@ module RssD
       rss.items.each do |item|
         p = Post.parse_atom(item)
         if @posts[p.id].nil?
-          notify(p)
+          notify(p) if @initialized
         end
 
         @posts[p.id] = p

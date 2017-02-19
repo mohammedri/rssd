@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'tilt/erubis'
 require 'rss'
 require 'rssd/feed'
+require 'byebug'
 
 module RssD
   class Server < Sinatra::Base

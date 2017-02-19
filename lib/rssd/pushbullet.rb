@@ -9,7 +9,7 @@ module RssD
 
 		def push_note(title, body)
       puts "pushing with access token: #{@access_token}"
-			json = JSON.generate({'title' => title, 'body' => body})
+			json = JSON.generate({'title' => title, 'body' => body, 'type' => 'note'})
 			uri = URI('https://api.pushbullet.com/v2/pushes')
 			req = Net::HTTP::Post.new(uri)
 			req['Access-Token'] = @access_token
@@ -21,7 +21,7 @@ module RssD
       http.use_ssl = true if uri.scheme == 'https'
 
       res = http.start do |h|
-          h.request Net::HTTP::Get.new(uri.request_uri)
+        h.request req
       end
 
 			case res

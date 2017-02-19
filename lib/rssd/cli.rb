@@ -8,7 +8,9 @@ module RssD
         while true do
           puts "[Thread] Fetching RSS..."
           Server.blogs.each do |blog, url|
-            Server.rss_feeds[blog].update_feed
+            feed = Server.rss_feeds[blog]
+            feed.update_feed
+            feed.initialize! unless feed.initialized?
           end
           sleep 3
         end
