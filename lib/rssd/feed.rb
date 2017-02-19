@@ -1,9 +1,12 @@
+require 'rssd/pushbullet'
+
 module RssD
   class Feed
     def initialize(id, url)
       @id = id
       @url = url
       @posts = {}
+      @pushbullet = PushBullet.new
     end
 
     def posts
@@ -11,7 +14,7 @@ module RssD
     end
 
     def notify(p)
-      puts "Found new post #{p.id}"
+      @pushbullet.push_note(p.title, p.link)
     end
 
     def update_feed
