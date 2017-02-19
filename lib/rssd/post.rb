@@ -1,6 +1,6 @@
 require 'nokogiri'
 
-module RssD 
+module RssD
 	class Post
 		attr_accessor :id, :title, :link, :date, :summary
 

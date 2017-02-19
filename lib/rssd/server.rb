@@ -10,6 +10,10 @@ module RssD
         sirupsen: 'http://sirupsen.com/atom.xml',
         jvns: 'http://jvns.ca/atom.xml'
       }
+
+      @@blogs.each do |blog, url|
+        @@rss_feeds[blog] = ::RssD::Feed.new(blog, url)
+      end
     end
 
     def self.rss_feeds
@@ -28,14 +32,8 @@ module RssD
 
     @@blogs.keys.each do |blog|
 	    get "/#{blog.to_s}" do
-	      if @@rss_feeds[blog]
-	        @posts = @@rss_feeds[blog].items.map do |item|
-	          Post.parse_atom(item)
-	        end
-	        erb :index
-	      else
-	        "RSS not fetched"
-	      end
+        @posts = @@rss_feeds[blog].posts
+        erb :index
 	    end
  		end
   end

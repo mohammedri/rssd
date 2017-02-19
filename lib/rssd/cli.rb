@@ -8,7 +8,7 @@ module RssD
         while true do
           puts "[Thread] Fetching RSS..."
           Server.blogs.each do |blog, url|
-            Server.rss_feeds[blog] = RSS::Parser.parse(url, false)
+            Server.rss_feeds[blog].update_feed
           end
           sleep 300
         end
