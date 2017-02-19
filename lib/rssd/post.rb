@@ -1,5 +1,9 @@
+require 'nokogiri'
+
 module RssD 
 	class Post
+		attr_accessor :id, :title, :link, :date, :summary
+
 		def initialize(id, title, link, date, summary)
 			@id = id
 			@title = title
@@ -14,11 +18,11 @@ module RssD
 			link = item.link.href
 			date = item.updated.content
 			summary = get_summary(item)
-			self.new(id, title, date, summary)
+			self.new(id, title, link, date, summary)
 		end
 
-		def get_summary(item)
-			return Nokogiri::HTML(items[0].content.content).text[0..140] + "..."
+		def self.get_summary(item)
+			return Nokogiri::HTML(item.content.content).text[0..140] + "..."
 		end
 
 	end

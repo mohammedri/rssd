@@ -8,7 +8,7 @@ module RssD
 
     get '/jvns.ca' do
     	rss = RSS::Parser.parse('http://jvns.ca/atom.xml', false)
-    	posts = rss.items.map do |item|
+    	@posts = rss.items.map do |item|
   			Post.parse_atom(item)
 			end
       erb :index
