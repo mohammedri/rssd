@@ -10,6 +10,10 @@ module RssD
       @posts
     end
 
+    def notify(p)
+      puts "Found new post #{p.id}"
+    end
+
     def update_feed
       rss = RSS::Parser.parse(@url, false)
       rss.items.each do |item|

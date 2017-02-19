@@ -10,7 +10,7 @@ module RssD
           Server.blogs.each do |blog, url|
             Server.rss_feeds[blog].update_feed
           end
-          sleep 300
+          sleep 3
         end
       }
       t.abort_on_exception = true
