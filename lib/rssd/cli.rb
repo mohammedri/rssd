@@ -10,7 +10,7 @@ module RssD
           Server.blogs.each do |blog, url|
             Server.rss_feeds[blog] = RSS::Parser.parse(url, false)
           end
-          sleep 15
+          sleep 300
         end
       }
       t.abort_on_exception = true

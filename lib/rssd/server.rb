@@ -26,15 +26,17 @@ module RssD
 
     set :root, File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
 
-    get '/jvns' do
-      if @@rss_feeds
-        @posts = @@rss_feeds[:jvns].items.map do |item|
-          Post.parse_atom(item)
-        end
-        erb :index
-      else
-        "RSS not fetched"
-      end
-    end
+    @@blogs.keys.each do |blog|
+	    get "/#{blog.to_s}" do
+	      if @@rss_feeds[blog]
+	        @posts = @@rss_feeds[blog].items.map do |item|
+	          Post.parse_atom(item)
+	        end
+	        erb :index
+	      else
+	        "RSS not fetched"
+	      end
+	    end
+ 		end
   end
 end
