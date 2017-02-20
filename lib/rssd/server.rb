@@ -9,9 +9,8 @@ module RssD
     configure do
       @@rss_feeds = {}
       @@blogs = {
-        # sirupsen: 'http://sirupsen.com/atom.xml',
-        # jvns: 'http://jvns.ca/atom.xml',
-        test: './atom.xml'
+        sirupsen: 'http://sirupsen.com/atom.xml',
+        jvns: 'http://jvns.ca/atom.xml'
       }
 
       @@blogs.each do |blog, url|
