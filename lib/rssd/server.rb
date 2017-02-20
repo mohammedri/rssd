@@ -31,7 +31,7 @@ module RssD
       @@blogs
     end
 
-    set :root, File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
+    set :root, RssD.root_dir
 
     @@blogs.keys.each do |blog|
 	    get "/#{blog.to_s}" do

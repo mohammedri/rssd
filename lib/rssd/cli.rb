@@ -16,6 +16,7 @@ module RssD
         end
       }
       t.abort_on_exception = true
+
       Server.run!
     end
   end

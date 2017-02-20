@@ -1,14 +1,14 @@
 require 'net/http'
 require 'json'
+require 'yaml'
 
 module RssD
 	class PushBullet
 		def initialize
-			@access_token = ENV['PUSHBULLET_ACCESS_TOKEN']
+      @access_token = RssD.config['pushbullet_access_token']
 		end
 
 		def push_note(title, body)
-      puts "pushing with access token: #{@access_token}"
 			json = JSON.generate({'title' => title, 'body' => body, 'type' => 'note'})
 			uri = URI('https://api.pushbullet.com/v2/pushes')
 			req = Net::HTTP::Post.new(uri)
