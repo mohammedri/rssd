@@ -1,7 +1,25 @@
-<% @posts.each do |post| %>
-<ul>
-	<li>
-		<%= post.title %>
-	</li>
-</ul>
-<% end %>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>rssd</title>
+    <meta name="description" content="RSS polling daemon">
+    <meta name="author" content="mohammedri and hkdsun">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+    <style>
+      a { text-decoration: none }
+      a:hover { color: #5f9ea0 }
+    </style>
+  </head>
+
+  <body>
+    <div class="w3-container">
+    <ul class="w3-ul">
+      <% @posts.each do |post| %>
+      <li><a href="<%= post.link %>"><%= post.title %></a></li>
+      <% end %>
+    </ul>
+    </div>
+  </body>
+</html>

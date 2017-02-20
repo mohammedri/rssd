@@ -8,12 +8,7 @@ module RssD
   class Server < Sinatra::Base
     configure do
       @@rss_feeds = {}
-      @@blogs = {
-        sirupsen: 'http://sirupsen.com/atom.xml',
-        jvns: 'http://jvns.ca/atom.xml'
-      }
-
-      @@blogs.each do |blog, url|
+      RssD.followed.each do |blog, url|
         @@rss_feeds[blog] = RssD::Feed.new(blog, url)
       end
     end
@@ -26,15 +21,13 @@ module RssD
       @@rss_feeds = x
     end
 
-    def self.blogs
-      @@blogs
-    end
-
     set :root, RssD.root_dir
 
-    @@blogs.keys.each do |blog|
+    RssD.followed.keys.each do |blog|
 	    get "/#{blog.to_s}" do
-        @posts = @@rss_feeds[blog].posts.values
+        RssD.feed_muts[blog].synchronize do
+          @posts = @@rss_feeds[blog].posts.values
+        end
         erb :index
 	    end
  		end
