@@ -6,3 +6,6 @@ Scrap the website of an  engineering blog such as www.jvns.ca to find out if he/
 
 #Technologies used
 Ruby, sinatra, pushbullet, digitalocean, bash scripting etc.
+
+License
+This script is available as open source under the terms of the MIT LICENSE.
